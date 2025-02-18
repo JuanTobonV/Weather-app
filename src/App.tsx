@@ -5,11 +5,13 @@ import humidityIcon from './assets/icons8-humidity-100.png'
 import precipitationIcon from './assets/icons8-precipitation-100.png'
 import windIcon from './assets/icons8-wind-100.png'
 
-
-
+import { useWeatherHook } from './hooks/useWeatherHook'
 
 
 function App() {
+
+  const {handleSubmit, weather} = useWeatherHook();
+  
 
   return (
     <>
@@ -18,13 +20,16 @@ function App() {
       <main className=" flex justify-center h-fit w-full bg-linear-to-b from bg-neutral-900 text-white p-10">
 
         
-      <form className="grid w-4/5 h-screen grid-cols-5 grid-rows-7 gap-4">
-          <div className="col-span-5 grid">
+      <form onSubmit={(e) => handleSubmit(e)} className="grid w-4/5 h-screen grid-cols-5 grid-rows-8 gap-4">
+          <div className="col-span-5 grid gap-4">
             <input
-              className="border-gray-400 border h-14 rounded-lg pl-2 bg-neutral-700"
+              className="border-gray-400 border h-14 rounded-lg  bg-neutral-700 col-span-2 px-2"
               type="text"
               placeholder="Search for cities" 
             />
+            <button className='bg-neutral-800 col-start-3  rounded-xl cursor-pointer hover:bg-neutral-600 transition-all'
+            
+            >Use my current location</button>
           </div>
 
           <div className="col-span-3 row-span-4 row-start-2 grid">
@@ -68,29 +73,7 @@ function App() {
                         </div>
                       </div>
   
-                      <div className='flex overflow-x-visible'>
-                        <div className='flex flex-col items-center w-full'>
-                          <p className='text-xl font-semibold'>6:00 AM</p>
-                          <img src={sunIcon} width="80px" height="80px" alt="Imagen sun" />
-                          <p className='text-xl font-semibold'>25°</p>
-                        </div>
-                      </div>
-  
-                      <div className='flex overflow-x-visible'>
-                        <div className='flex flex-col items-center w-full'>
-                          <p className='text-xl font-semibold'>6:00 AM</p>
-                          <img src={sunIcon} width="80px" height="80px" alt="Imagen sun" />
-                          <p className='text-xl font-semibold'>25°</p>
-                        </div>
-                      </div>
-  
-                      <div className='flex overflow-x-visible'>
-                        <div className='flex flex-col items-center w-full'>
-                          <p className='text-xl font-semibold'>6:00 AM</p>
-                          <img src={sunIcon} width="80px" height="80px" alt="Imagen sun" />
-                          <p className='text-xl font-semibold'>25°</p>
-                        </div>
-                      </div>
+                      
 
                       <button className='relative right-0 top-0 bottom-0'><img className='cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
 
@@ -103,6 +86,7 @@ function App() {
       
         
       </main>
+      {console.log(weather.then())}
     </>
   )
 }
