@@ -71,7 +71,7 @@ function App() {
                     <h2 className='text-2xl font-semibold'>24 Hour Forecast</h2>
                     <div className='flex justify-center my-4'>
                       <button className='relative -left-5 top-0 bottom-0'><img className='rotate-180 cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
-                      <div className='flex w-2/3 overflow-x-scroll gap-10'>
+                      <div className='flex w-2/3 overflow-x-hidden gap-10'>
                         { weather?.forecast.map((condition, index) => (
                         <div key={index} className='relative flex gap-10 justify-center'>
                         
