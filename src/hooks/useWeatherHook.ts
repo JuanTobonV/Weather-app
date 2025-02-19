@@ -28,7 +28,7 @@ export const useWeatherHook = () => {
                 windspeed: data.currentConditions.windspeed,
                 temp: data.currentConditions.temp,
                 conditions: data.currentConditions.conditions,
-                cityName: data.address,
+                cityName: data.resolvedAddress,
                 forecast: data.days[0].hours
 
             };
