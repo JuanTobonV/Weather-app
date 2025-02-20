@@ -11,7 +11,10 @@ function App() {
     handleSubmit,
     weather,
     handleInputChange,
-    handleButtonClick
+    handleButtonClick,
+    containerRef,
+    scrollLeft,
+    scrollRight,
     
   } = useWeatherHook();
 
@@ -73,13 +76,13 @@ function App() {
           <div className="w-full col-span-5 row-span-2 row-start-6">
             <section className="bg-neutral-700 flex flex-col p-3 rounded-xl">
               <h2 className='text-2xl font-semibold'>24 Hour Forecast</h2>
-              <div className='flex justify-center my-4'>
-                <button className='relative -left-5 top-0 bottom-0'><img className='rotate-180 cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
-                <div className='flex w-2/3 overflow-x-hidden gap-10'>
+              <div  className='flex justify-center my-4'>
+                <button onClick={scrollLeft} className='relative -left-5 top-0 bottom-0'><img className='rotate-180 cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
+                <div ref={containerRef} className='flex w-2/3  overflow-x-hidden scroll-smooth gap-10'>
                   {weather?.forecast.map((condition, index) => (
                     <div key={index} className='relative flex gap-10 justify-center'>
-                      <div className='flex overflow-x-visible'>
-                        <div className='flex flex-col items-center w-full'>
+                      <div className='flex'>
+                        <div className='flex flex-col items-center w-12 '>
                           <p>{condition.dateTime}AM</p>
                           <img src={sunIcon} width="80px" height="80px" alt="Imagen sun" />
                           <p className='text-xl font-semibold'>{condition.temp}°</p>
@@ -88,7 +91,7 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <button className='relative -right-5 top-0 bottom-0'><img className='cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
+                <button onClick={scrollRight} className='relative -right-5 top-0 bottom-0'><img className='cursor-pointer' src={arrowIcon} width={35} alt="" /></button>
               </div>
             </section>
           </div>

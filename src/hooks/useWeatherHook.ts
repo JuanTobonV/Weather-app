@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { currentConditions } from "../types/WeatherType"
 import axios from "axios";
 
@@ -61,11 +61,33 @@ export const useWeatherHook = () => {
       setSelectedCity(inputValue);
     };
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const scrollLeft = () => {
+        if (containerRef.current) {
+          containerRef.current.scrollBy({
+            left: -600, // Adjust the value as needed
+            behavior: 'smooth',
+          });
+        }
+      };
+    
+      const scrollRight = () => {
+        if (containerRef.current) {
+          containerRef.current.scrollBy({
+            left: 600, // Adjust the value as needed
+            behavior: 'smooth',
+          });
+        }
+      };
+
     return {
         handleSubmit,
         setWeather,
         weather,
         handleInputChange,
-        handleButtonClick
+        handleButtonClick,
+        containerRef,
+        scrollLeft,
+        scrollRight
     }
 }
