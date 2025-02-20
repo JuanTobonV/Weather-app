@@ -6,7 +6,7 @@ export const useWeatherHook = () => {
     const [weather, setWeather] = useState<currentConditions>();
     const [selectedCity, setSelectedCity] = useState('')
     // const [userCurrentLocation, setUserCurrentLocation]
-
+    
     useEffect(() => {
 
         // const userCurrentLocation = navigator.geolocation.getCurrentPosition(() => {
@@ -50,10 +50,22 @@ export const useWeatherHook = () => {
     
     }
 
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+      
+    };
+  
+    const handleButtonClick = () => {
+      setSelectedCity(inputValue);
+    };
+
     return {
         handleSubmit,
         setWeather,
         weather,
-        setSelectedCity,
+        handleInputChange,
+        handleButtonClick
     }
 }
